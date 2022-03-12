@@ -1,7 +1,10 @@
 'use strict';
+const bcrypt = require('bcrypt')
+
 const {
   Model
 } = require('sequelize');
+const { set } = require('..');
 module.exports = (sequelize, DataTypes) => {
   class Usuarios extends Model {
     /**
@@ -45,7 +48,11 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error(`O campo senha deve possui menos que 64 caracteres`)
           }
         }
-      }
+      },
+      set(value) {
+        const hash = bcrypt.hashSync(value, 12)
+        this.setDataValue('senha', hash)
+      },
     } 
   }, {
     sequelize,
