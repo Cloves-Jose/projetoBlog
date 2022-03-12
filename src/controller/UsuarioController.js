@@ -24,6 +24,10 @@ class UsuarioController {
         }
     }
 
+    static async login(req, res) {
+        res.status(204).send()
+    }
+
     static async listarUsuario(req, res) {
         try {
             const resultado = await usuarioServices.listarRegistro()
