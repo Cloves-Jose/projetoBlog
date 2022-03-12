@@ -6,15 +6,19 @@ class Services {
     }
 
     async criarRegistro(registro) {
-        return database[this.nomeDoModelo].create(registro)
+        return await database[this.nomeDoModelo].create(registro)
     }
 
-    async listarRegistro() {
-        return database[this.nomeDoModelo].findAll()
+    async listarRegistro(where = {}) {
+        return await database[this.nomeDoModelo].findAll({where: {...where}})
     }
 
     async deletarRegistro(id) {
-        return database[this.nomeDoModelo].findOne({where: {id: id}})
+        return await database[this.nomeDoModelo].destroy({where: {id: id}})
+    }
+
+    async buscarRegistroPorId(id) {
+        return await database[this.nomeDoModelo].findOne({where: {id: id}})
     }
 }
 
