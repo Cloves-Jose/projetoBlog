@@ -1,0 +1,32 @@
+{
+  "name": "projetoblog",
+  "version": "1.0.0",
+  "description": "Projeto para criação de autenticação",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cloves-Jose/projetoBlog.git"
+  },
+  "author": "Cloves José",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cloves-Jose/projetoBlog/issues"
+  },
+  "homepage": "https://github.com/Cloves-Jose/projetoBlog#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "path": "^0.12.7",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.4.1"
+  }
+}
