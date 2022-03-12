@@ -11,4 +11,5 @@ router
     .post('/usuarioCadastro', UsuarioController.adicionarUsuario)
     .get('/usuarioListar', UsuarioController.listarUsuario)
     .delete('/usuarioDeletar/:id', UsuarioController.deletarUsarioId)
+    
 module.exports = router
