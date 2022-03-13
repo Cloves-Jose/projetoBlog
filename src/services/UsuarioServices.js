@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt')
 const Services = require('./Services')
 const database = require('../models')
 const { InvalidArgumentError } = require('../err/erros')
@@ -38,11 +37,6 @@ class UsuarioServices extends Services {
             throw new InvalidArgumentError(portugues.usuarioService.usuarioExistente)
         }
     }
-
-    // gerarSenhaHash(senha){
-    //     const custoHash = 12
-    //     return bcrypt.hash(senha, custoHash)
-    // }
 }
 
 module.exports = UsuarioServices

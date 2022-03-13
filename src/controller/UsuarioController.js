@@ -1,7 +1,8 @@
 const { UsuarioServices } = require('../services')
 const usuarioServices = new UsuarioServices()
-
 const { InvalidArgumentError, InternalServerError } = require('../err/erros')
+const { criarTokenJWT } = require('./JwtController')
+const blacklist = require('../../redis/manipula-blacklist')
 
 
 class UsuarioController {
@@ -25,7 +26,19 @@ class UsuarioController {
     }
 
     static async login(req, res) {
+        const token = criarTokenJWT(req.user);
+        res.set('Authorization', token);
         res.status(204).send()
+    }
+
+    static async logout(req, res) {
+        try{
+            const token = req.token;
+            await blacklist.adiciona(token);
+            res.status(204).send();
+        } catch(error) {
+            res.status(500).json({ error: error.message })
+        }
     }
 
     static async listarUsuario(req, res) {
@@ -49,7 +62,6 @@ class UsuarioController {
             res.status(500).json(error.message)
         }
     }
-
 
 }
 
