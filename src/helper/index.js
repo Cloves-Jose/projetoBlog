@@ -1,6 +1,7 @@
 const estrategiasAutenticacao = require('./estrategias-autenticacao')
-
+const middlewareAutenticacao = require('./middleware-autenticacao')
 
 module.exports = {
-    estrategiasAutenticacao: estrategiasAutenticacao
+    estrategiasAutenticacao: estrategiasAutenticacao,
+    middlewareAutenticacao: middlewareAutenticacao
 }

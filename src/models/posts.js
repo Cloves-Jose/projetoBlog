@@ -1,4 +1,5 @@
 'use strict';
+const { InvalidArgumentError } = require('../err/erros')
 const {
   Model
 } = require('sequelize');
@@ -14,8 +15,32 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Posts.init({
-    titulo: DataTypes.STRING,
-    conteudo: DataTypes.STRING
+    titulo: {
+      type: DataTypes.STRING,
+      validate: {
+        funcaoValidadora: function(dado) {
+          if(typeof dado !== 'string' || dado.length === 0){
+            throw new Error(`É necessário preencher o campo Título`)
+          }
+          if(dado.length < 5){
+            throw new Error(`O campo Título precisa ter mais que 5 caracteres`)
+          }
+        }
+      }
+    },
+    conteudo: {
+      type: DataTypes.STRING,
+      validate: {
+        funcaoValidadora: function(dado) {
+          if(typeof dado !== 'string' || dado.length === 0){
+            throw new Error(`É necessário preencher o campo Conteúdo`)
+          }
+          if(dado.length > 140){
+            throw new Error(`O campo Conteúdo não deve ter mais que 140 caracteres`)
+          }
+        }
+      }
+    },
   }, {
     sequelize,
     paranoid: true,
